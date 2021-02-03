@@ -5,7 +5,7 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Halaman Utama</a>
+      <a href="{{ route('landing') }}" class="nav-link">Halaman Utama</a>
     </li>
   </ul>
 
@@ -106,9 +106,14 @@
         <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown"></a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="#">Lihat Profil</a>
+          <a class="dropdown-item" href="{{ route('user.showAuth', Auth::user()->nip) }}">Lihat Profil</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Keluar</a>
+          <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Keluar
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+          </form>
         </div>
       </div>
     </li>
