@@ -106,7 +106,14 @@
         <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown"></a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="{{ route('user.showAuth', Auth::user()->nip) }}">Lihat Profil</a>
+          <a class="dropdown-item" href="{{ route('user.showAuth', Auth::user()->nip) }}">
+            Lihat Profil
+          </a>
+          @if (Auth::user()->role > 1)
+            <a class="dropdown-item" href="{{ route('user.index') }}">
+              Daftar Pengguna
+            </a>
+          @endif
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             Keluar

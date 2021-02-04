@@ -9,6 +9,14 @@
       Daftar NIP baru
     </p>
 
+    @if ($errors->any())
+      @foreach ($errors->all() as $error)
+        <div class="alert alert-warning" role="alert">
+          {{ $error }}
+        </div>
+      @endforeach
+    @endif
+
     <form action="{{ route('register.store') }}" method="post">
       @csrf
       <div class="input-group mb-3">

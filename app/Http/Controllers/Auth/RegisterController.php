@@ -19,11 +19,18 @@ class RegisterController extends Controller
 
   public function store(Request $request)
   {
-    $request -> validate([
+    $rules = [
       'name' => ['required', 'string', 'max:255'],
       'nip' => ['required', 'string', 'max:255', 'unique:users'],
       'password' => ['required', 'string', 'min:8', 'confirmed'],
-    ]);
+    ];
+
+    $customMessages = [
+      'required' => 'The :attribute field is required.',
+      'nip.unique' => 'NIP sudah terdaftar!',
+    ];
+
+    $this -> validate($request, $rules, $customMessages);
 
     $user = User::create([
       'name' => $request -> name,

@@ -49,7 +49,7 @@
     </form>
 
     <p class="mb-1">
-      <a href="#">Saya Lupa Password</a>
+      <a href="{{ route('forget.password') }}">Saya Lupa Password</a>
     </p>
     <p class="mb-0">
       <a href="{{ route('register') }}" class="text-center">NIP belum terdaftar?</a>
