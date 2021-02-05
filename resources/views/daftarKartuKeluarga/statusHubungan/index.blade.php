@@ -1,15 +1,15 @@
 @extends('daftarKartuKeluarga.base')
 
-@section('title', 'Gelar')
+@section('title', 'Status Hubungan Dengan Kepala Keluarga')
 
 @section('breadcrumb')
-  {{ Breadcrumbs::render('gelar.daftarKartuKeluarga') }}
+  {{ Breadcrumbs::render('statusHubungan.daftarKartuKeluarga') }}
 @endsection
 
 @section('base.daftarKartuKeluarga')
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Gelar</h3>
+      <h3 class="card-title">Status Hubungan Dengan Kepala Keluarga</h3>
     </div>
 
     <div class="card-body">
@@ -21,12 +21,12 @@
           </tr>
         </thead>
         <tbody>
-          @foreach( $gelar as $glr )
+          @foreach( $statusHubungan as $hbg )
             <tr>
               <td>{{ $loop -> iteration }}</td>
               <td>
-                <a href="#" data-toggle="modal" data-target="#modal-keterangan-{{ $glr -> id }}">
-                  {{ $glr -> keterangan }}
+                <a href="#" data-toggle="modal" data-target="#modal-keterangan-{{ $hbg -> id }}">
+                  {{ $hbg -> keterangan }}
                 </a>
               </td>
             </tr>
@@ -42,23 +42,23 @@
     </div>
   </div>
 
-  @foreach( $gelar as $glr )
-    <div class="modal fade" id="modal-keterangan-{{ $glr -> id }}">
+  @foreach( $statusHubungan as $hbg )
+    <div class="modal fade" id="modal-keterangan-{{ $hbg -> id }}">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Gelar</h4>
+            <h4 class="modal-title">Status Hubungan Dengan Kepala Keluarga</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="{{ route('gelar.update', $glr -> id) }}" method="post">
+          <form action="{{ route('statusHubungan.update', $hbg -> id) }}" method="post">
             @csrf
             @method('patch')
             <div class="modal-body">
               <div class="form-group">
-                <label>Gelar</label>
-                <input type="text" class="form-control" placeholder="Gelar" name="keterangan" value="{{ $glr->keterangan }}">
+                <label>Status Hubungan Dengan Kepala Keluarga</label>
+                <input type="text" class="form-control" placeholder="Status Hubungan Dengan Kepala Keluarga" name="keterangan" value="{{ $hbg->keterangan }}">
               </div>
             </div>
             <div class="modal-footer justify-content-between">
@@ -73,15 +73,15 @@
 
   <div class="card card-primary">
     <div class="card-header">
-      <h3 class="card-title">Tambah Gelar</h3>
+      <h3 class="card-title">Tambah Status Hubungan Dengan Kepala Keluarga</h3>
     </div>
 
-    <form action="{{ route('gelar.store') }}" method="post">
+    <form action="{{ route('statusHubungan.store') }}" method="post">
       @csrf
       <div class="card-body">
         <div class="form-group">
-          <label>Gelar</label>
-          <input type="text" class="form-control" placeholder="Gelar" name="keterangan">
+          <label>Status Hubungan Dengan Kepala Keluarga</label>
+          <input type="text" class="form-control" placeholder="Status Hubungan Dengan Kepala Keluarga" name="keterangan">
         </div>
       </div>
       <div class="card-footer">

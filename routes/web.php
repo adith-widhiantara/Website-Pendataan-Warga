@@ -50,8 +50,52 @@ Route::middleware('auth')->group(function () {
   Route::get('/', 'LandingController@landing')->name('landing');
 });
 
-Route::namespace('KartuKeluarga')->group(function () {
+Route::namespace('KartuKeluarga')->middleware('auth')->group(function () {
   Route::prefix('gelar')->name('gelar.')->group(function () {
-    Route::get('/', 'DaftarKartuKeluargaController@gelarIndex')->name('index');
+    Route::get('', 'DaftarKartuKeluargaController@gelarIndex')->name('index');
+    Route::post('store', 'DaftarKartuKeluargaController@gelarStore')->name('store');
+    Route::patch('{gelar}/update', 'DaftarKartuKeluargaController@gelarUpdate')->name('update');
+  });
+
+  Route::prefix('golongandarah')->name('darah.')->group(function () {
+    Route::get('', 'DaftarKartuKeluargaController@darahIndex')->name('index');
+    Route::post('store', 'DaftarKartuKeluargaController@darahStore')->name('store');
+    Route::patch('{golongandarah}/update', 'DaftarKartuKeluargaController@darahUpdate')->name('update');
+  });
+
+  Route::prefix('agama')->name('agama.')->group(function () {
+    Route::get('', 'DaftarKartuKeluargaController@agamaIndex')->name('index');
+    Route::post('store', 'DaftarKartuKeluargaController@agamaStore')->name('store');
+    Route::patch('{agama}/update', 'DaftarKartuKeluargaController@agamaUpdate')->name('update');
+  });
+
+  Route::prefix('statusperkawinan')->name('statusPerkawinan.')->group(function () {
+    Route::get('', 'DaftarKartuKeluargaController@statusPerkawinanIndex')->name('index');
+    Route::post('store', 'DaftarKartuKeluargaController@statusPerkawinanStore')->name('store');
+    Route::patch('{statusPerkawinan}/update', 'DaftarKartuKeluargaController@statusPerkawinanUpdate')->name('update');
+  });
+
+  Route::prefix('statushubungan')->name('statusHubungan.')->group(function () {
+    Route::get('', 'DaftarKartuKeluargaController@statusHubunganIndex')->name('index');
+    Route::post('store', 'DaftarKartuKeluargaController@statusHubunganStore')->name('store');
+    Route::patch('{statusHubungan}/update', 'DaftarKartuKeluargaController@statusHubunganUpdate')->name('update');
+  });
+
+  Route::prefix('penyandangcacat')->name('penyandangCacat.')->group(function () {
+    Route::get('', 'DaftarKartuKeluargaController@penyandangCacatIndex')->name('index');
+    Route::post('store', 'DaftarKartuKeluargaController@penyandangCacatStore')->name('store');
+    Route::patch('{penyandangCacat}/update', 'DaftarKartuKeluargaController@penyandangCacatUpdate')->name('update');
+  });
+
+  Route::prefix('pendidikanterakhir')->name('pendidikanTerakhir.')->group(function () {
+    Route::get('', 'DaftarKartuKeluargaController@pendidikanTerakhirIndex')->name('index');
+    Route::post('store', 'DaftarKartuKeluargaController@pendidikanTerakhirStore')->name('store');
+    Route::patch('{pendidikanTerakhir}/update', 'DaftarKartuKeluargaController@pendidikanTerakhirUpdate')->name('update');
+  });
+
+  Route::prefix('pekerjaan')->name('pekerjaan.')->group(function () {
+    Route::get('', 'DaftarKartuKeluargaController@pekerjaanIndex')->name('index');
+    Route::post('store', 'DaftarKartuKeluargaController@pekerjaanStore')->name('store');
+    Route::patch('{pekerjaan}/update', 'DaftarKartuKeluargaController@pekerjaanUpdate')->name('update');
   });
 });

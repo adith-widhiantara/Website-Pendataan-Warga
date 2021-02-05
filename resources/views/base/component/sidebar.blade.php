@@ -77,8 +77,13 @@
         </li>
 
         <li class="nav-header">Daftar Kartu Keluarga</li>
+        @if ( url()->current() == route('gelar.index')  || url()->current() == route('darah.index') || url()->current() == route('agama.index') || url()->current() == route('statusPerkawinan.index') || url()->current() == route('statusHubungan.index') || url()->current() == route('penyandangCacat.index') || url()->current() == route('pendidikanTerakhir.index') || url()->current() == route('pekerjaan.index') )
+        <li class="nav-item menu-open">
+          <a href="#" class="nav-link active">
+        @else
         <li class="nav-item">
           <a href="#" class="nav-link">
+        @endif
             <i class="fas fa-table nav-icon"></i>
             <p>
               Data Kartu Keluarga
@@ -87,7 +92,11 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('gelar.index') }}" class="nav-link">
+              @if ( url()->current() == route('gelar.index') )
+                <a href="#" class="nav-link active">
+              @else
+                <a href="{{ route('gelar.index') }}" class="nav-link">
+              @endif
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                   Gelar
@@ -95,7 +104,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              @if ( url()->current() == route('darah.index') )
+                <a href="#" class="nav-link active">
+              @else
+                <a href="{{ route('darah.index') }}" class="nav-link">
+              @endif
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                   Golongan Darah
@@ -103,7 +116,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              @if ( url()->current() == route('agama.index') )
+                <a href="#" class="nav-link active">
+              @else
+                <a href="{{ route('agama.index') }}" class="nav-link">
+              @endif
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                   Agama
@@ -111,7 +128,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              @if ( url()->current() == route('statusPerkawinan.index') )
+                <a href="#" class="nav-link active">
+              @else
+                <a href="{{ route('statusPerkawinan.index') }}" class="nav-link">
+              @endif
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                   Status Perkawinan
@@ -119,7 +140,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              @if ( url()->current() == route('statusHubungan.index') )
+                <a href="#" class="nav-link active">
+              @else
+                <a href="{{ route('statusHubungan.index') }}" class="nav-link">
+              @endif
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                   Status Hubungan
@@ -127,7 +152,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              @if ( url()->current() == route('penyandangCacat.index') )
+                <a href="#" class="nav-link active">
+              @else
+                <a href="{{ route('penyandangCacat.index') }}" class="nav-link">
+              @endif
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                   Penyandang Cacat
@@ -135,7 +164,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              @if ( url()->current() == route('pendidikanTerakhir.index') )
+                <a href="#" class="nav-link active">
+              @else
+                <a href="{{ route('pendidikanTerakhir.index') }}" class="nav-link">
+              @endif
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                   Pendidikan Terakhir
@@ -143,7 +176,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              @if ( url()->current() == route('pekerjaan.index') )
+                <a href="#" class="nav-link active">
+              @else
+                <a href="{{ route('pekerjaan.index') }}" class="nav-link">
+              @endif
                 <i class="far fa-circle nav-icon"></i>
                 <p>
                   Pekerjaan

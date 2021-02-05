@@ -1,15 +1,15 @@
 @extends('daftarKartuKeluarga.base')
 
-@section('title', 'Gelar')
+@section('title', 'Golongan Darah')
 
 @section('breadcrumb')
-  {{ Breadcrumbs::render('gelar.daftarKartuKeluarga') }}
+  {{ Breadcrumbs::render('darah.daftarKartuKeluarga') }}
 @endsection
 
 @section('base.daftarKartuKeluarga')
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Gelar</h3>
+      <h3 class="card-title">Golongan Darah</h3>
     </div>
 
     <div class="card-body">
@@ -21,12 +21,12 @@
           </tr>
         </thead>
         <tbody>
-          @foreach( $gelar as $glr )
+          @foreach( $darah as $drh )
             <tr>
               <td>{{ $loop -> iteration }}</td>
               <td>
-                <a href="#" data-toggle="modal" data-target="#modal-keterangan-{{ $glr -> id }}">
-                  {{ $glr -> keterangan }}
+                <a href="#" data-toggle="modal" data-target="#modal-keterangan-{{ $drh -> id }}">
+                  {{ $drh -> keterangan }}
                 </a>
               </td>
             </tr>
@@ -42,23 +42,23 @@
     </div>
   </div>
 
-  @foreach( $gelar as $glr )
-    <div class="modal fade" id="modal-keterangan-{{ $glr -> id }}">
+  @foreach( $darah as $drh )
+    <div class="modal fade" id="modal-keterangan-{{ $drh -> id }}">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Gelar</h4>
+            <h4 class="modal-title">Golongan Darah</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="{{ route('gelar.update', $glr -> id) }}" method="post">
+          <form action="{{ route('darah.update', $drh -> id) }}" method="post">
             @csrf
             @method('patch')
             <div class="modal-body">
               <div class="form-group">
-                <label>Gelar</label>
-                <input type="text" class="form-control" placeholder="Gelar" name="keterangan" value="{{ $glr->keterangan }}">
+                <label>Golongan Darah</label>
+                <input type="text" class="form-control" placeholder="Golongan Darah" name="keterangan" value="{{ $drh->keterangan }}">
               </div>
             </div>
             <div class="modal-footer justify-content-between">
@@ -73,15 +73,15 @@
 
   <div class="card card-primary">
     <div class="card-header">
-      <h3 class="card-title">Tambah Gelar</h3>
+      <h3 class="card-title">Tambah Golongan Darah</h3>
     </div>
 
-    <form action="{{ route('gelar.store') }}" method="post">
+    <form action="{{ route('darah.store') }}" method="post">
       @csrf
       <div class="card-body">
         <div class="form-group">
-          <label>Gelar</label>
-          <input type="text" class="form-control" placeholder="Gelar" name="keterangan">
+          <label>Golongan Darah</label>
+          <input type="text" class="form-control" placeholder="Golongan Darah" name="keterangan">
         </div>
       </div>
       <div class="card-footer">
