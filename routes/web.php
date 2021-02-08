@@ -65,11 +65,16 @@ Route::namespace('KartuKeluarga')->middleware('auth')->group(function () {
 // end Data Kartu Keluarga
 
 // Data Anggota Keluarga
-Route::prefix('kartukeluarga/{nomorkk}')->name('anggotakeluarga.')->middleware('auth')->group(function () {
-  Route::get('create', 'AnggotaKeluargaController@create')->name('create');
-  Route::post('store', 'AnggotaKeluargaController@store')->name('store');
-  Route::get('{nomor_ktp}', 'AnggotaKeluargaController@show')->name('show');
-  Route::patch('{nomor_ktp}', 'AnggotaKeluargaController@update')->name('update');
+Route::middleware('auth')->name('anggotakeluarga.')->group(function () {
+  Route::prefix('kartukeluarga/{nomorkk}')->group(function () {
+    Route::get('create', 'AnggotaKeluargaController@create')->name('create');
+    Route::post('store', 'AnggotaKeluargaController@store')->name('store');
+    Route::get('{nomor_ktp}', 'AnggotaKeluargaController@show')->name('show');
+    Route::patch('{nomor_ktp}', 'AnggotaKeluargaController@update')->name('update');
+  });
+  Route::prefix('warga')->group(function () {
+    Route::get('', 'AnggotaKeluargaController@index')->name('index');
+  });
 });
 // end Data Anggota Keluarga
 

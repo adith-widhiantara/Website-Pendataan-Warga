@@ -24,6 +24,14 @@
       @csrf
       @method('patch')
       <div class="card-body">
+        @if ($errors->any())
+          @foreach ($errors->all() as $error)
+            <div class="alert alert-warning" role="alert">
+              {{ $error }}
+            </div>
+          @endforeach
+        @endif
+        
         <div class="form-group">
           <label>
             Nama

@@ -38,7 +38,11 @@
         </li>
 
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          @if ( url()->current() == route('anggotakeluarga.index') )
+            <a href="#" class="nav-link active">
+          @else
+            <a href="{{ route('anggotakeluarga.index') }}" class="nav-link">
+          @endif
             <i class="fas fa-user nav-icon"></i>
             <p>
               Warga

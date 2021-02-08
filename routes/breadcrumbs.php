@@ -39,6 +39,11 @@
     $trail->push($anggotaKeluarga->nomor_ktp, route('anggotakeluarga.show', [ $anggotaKeluarga->kartuKeluarga->nomorkk, $anggotaKeluarga->nomor_ktp ]));
   });
 
+  Breadcrumbs::for('anggotakeluarga.index', function ($trail) {
+    $trail->parent('landing');
+    $trail->push('Daftar Warga', route('anggotakeluarga.index'));
+  });
+
   Breadcrumbs::for('gelar.daftarKartuKeluarga', function ($trail) {
     $trail->parent('landing');
     $trail->push('Gelar', route('gelar.index'));

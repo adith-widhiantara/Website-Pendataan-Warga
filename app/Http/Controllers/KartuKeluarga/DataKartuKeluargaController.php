@@ -98,12 +98,21 @@ class DataKartuKeluargaController extends Controller
      */
     public function update(Request $request, $nomorkk)
     {
+      $request -> validate([
+        'alamat' => ['required', 'string', 'max:255'],
+        'kode_pos' => ['required', 'string', 'max:255'],
+        'rt' => ['required', 'string', 'max:255'],
+        'rw' => ['required', 'string', 'max:255'],
+        'telepon_rumah' => ['required', 'string', 'max:255'],
+      ]);
+
       $kartuKeluarga = KartuKeluarga::where('nomorkk', $nomorkk)
                                     ->update([
                                       'alamat' => $request -> alamat,
                                       'kode_pos' => $request -> kode_pos,
                                       'rt' => $request -> rt,
                                       'rw' => $request -> rw,
+                                      'telepon_rumah' => $request -> telepon_rumah,
                                     ]);
 
       return back()->with('status', 'Data Kartu Keluarga Berhasil Diganti');

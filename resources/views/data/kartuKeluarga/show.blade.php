@@ -28,7 +28,12 @@
           <label>
             Nama Kepala Keluarga
           </label>
-          <input type="text" class="form-control" value="{{ \App\AnggotaKeluarga::where('id', $kartuKeluarga->kepala_keluarga_id)->first()->nama }}" disabled>
+
+          @if(isset($kartuKeluarga -> kepala_keluarga_id))
+            <input type="text" class="form-control" value="{{ \App\AnggotaKeluarga::where('id', $kartuKeluarga->kepala_keluarga_id)->first()->nama }}" disabled>
+          @else
+            <input type="text" class="form-control" value="( Kosong )" disabled>
+          @endif
         </div>
         <div class="form-group">
           <label>
@@ -37,7 +42,7 @@
           <input type="text" class="form-control" name="alamat" value="{{ $kartuKeluarga->alamat }}">
         </div>
         <div class="row">
-          <div class="col-3">
+          <div class="col-2">
             <div class="form-group">
               <label>
                 Kode Pos
@@ -45,7 +50,7 @@
               <input type="text" class="form-control" name="kode_pos" value="{{ $kartuKeluarga->kode_pos }}">
             </div>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <div class="form-group">
               <label>
                 RT
@@ -53,12 +58,20 @@
               <input type="text" class="form-control" name="rt" value="{{ $kartuKeluarga->rt }}">
             </div>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <div class="form-group">
               <label>
                 RW
               </label>
               <input type="text" class="form-control" name="rw" value="{{ $kartuKeluarga->rw }}">
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group">
+              <label>
+                Nomor Telepon
+              </label>
+              <input type="text" class="form-control" name="telepon_rumah" value="{{ $kartuKeluarga->telepon_rumah }}">
             </div>
           </div>
           <div class="col-3">

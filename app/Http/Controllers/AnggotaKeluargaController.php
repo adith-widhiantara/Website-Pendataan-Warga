@@ -17,7 +17,8 @@ class AnggotaKeluargaController extends Controller
      */
     public function index()
     {
-        //
+      $anggotaKeluarga = AnggotaKeluarga::all();
+      return view('data.anggotaKeluarga.index', compact('anggotaKeluarga'));
     }
 
     /**
@@ -39,6 +40,28 @@ class AnggotaKeluargaController extends Controller
      */
     public function store(Request $request, $nomorkk)
     {
+      $request -> validate([
+        'nama' => ['required', 'string', 'max:255', 'unique:anggota_keluargas'],
+        'gelars_id' => ['required'],
+        'nomor_ktp' => ['required', 'unique:anggota_keluargas'],
+        'jenis_kelamin' => ['required'],
+        'tempat_lahir' => ['required'],
+        'tanggal_bulan_tahun_lahir' => ['required'],
+        'surat_lahir' => ['required'],
+        'golongan_darahs_id' => ['required'],
+        'agamas_id' => ['required'],
+        'status_perkawinans_id' => ['required'],
+        'buku_nikah' => ['required'],
+        'surat_cerai' => ['required'],
+        'status_hubungan_dengan_kepala_keluargas_id' => ['required'],
+        'kelainan_fisik' => ['required'],
+        'penyandang_cacats_id' => ['required'],
+        'pendidikan_terakhirs_id' => ['required'],
+        'pekerjaans_id' => ['required'],
+        'nama_ibu' => ['required'],
+        'nama_ayah' => ['required'],
+      ]);
+
       $findKK = KartuKeluarga::where('nomorkk', $nomorkk)->first();
 
       $anggotaKeluarga = AnggotaKeluarga::create([
@@ -117,6 +140,31 @@ class AnggotaKeluargaController extends Controller
      */
     public function update(Request $request, $nomorkk, $nomor_ktp)
     {
+      $request -> validate([
+        'nama' => ['required', 'string', 'max:255'],
+        'gelars_id' => ['required'],
+        'nomor_ktp' => ['required'],
+        'jenis_kelamin' => ['required'],
+        'tempat_lahir' => ['required'],
+        'tanggal_bulan_tahun_lahir' => ['required'],
+        'surat_lahir' => ['required'],
+        'golongan_darahs_id' => ['required'],
+        'agamas_id' => ['required'],
+        'status_perkawinans_id' => ['required'],
+        'buku_nikah' => ['required'],
+        'surat_cerai' => ['required'],
+        'status_hubungan_dengan_kepala_keluargas_id' => ['required'],
+        'kelainan_fisik' => ['required'],
+        'penyandang_cacats_id' => ['required'],
+        'pendidikan_terakhirs_id' => ['required'],
+        'pekerjaans_id' => ['required'],
+        'nama_ibu' => ['required'],
+        'nama_ayah' => ['required'],
+      ]);
+
+      $findKK = KartuKeluarga::where('nomorkk', $nomorkk)->first();
+      $anggotaKeluarga = AnggotaKeluarga::where('nomor_ktp', $nomor_ktp)->first();
+
       AnggotaKeluarga::where('nomor_ktp', $nomor_ktp)
                       ->update([
                         'nama' => $request -> nama,
@@ -147,6 +195,13 @@ class AnggotaKeluargaController extends Controller
                         'nik_ayah' => $request -> nik_ayah,
                         'nama_ayah' => $request -> nama_ayah,
                       ]);
+
+      if ( $request -> status_hubungan_dengan_kepala_keluargas_id == 1 ) {
+        KartuKeluarga::where('id', $findKK -> id)
+                      ->update([
+                        'kepala_keluarga_id' => $anggotaKeluarga -> id,
+                      ]);
+      }
 
       return redirect()->route('kartukeluarga.show', $nomorkk)->with('status', 'Data Anggota Keluarga Berhasil Diganti!');
     }

@@ -1,10 +1,8 @@
 @extends('base.base')
 
-@section('title', 'Daftar Kartu Keluarga')
+@section('title', 'Daftar Warga')
 
-@section('breadcrumb')
-  {{ Breadcrumbs::render('kartukeluarga.index') }}
-@endsection
+@section('breadcrumb', Breadcrumbs::render('anggotakeluarga.index'))
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -14,17 +12,9 @@
 @endsection
 
 @section('base')
-  <div class="row mb-3">
-    <div class="col-12">
-      <a href="{{ route('kartukeluarga.create') }}" class="btn btn-primary">
-        Tambah Data Kartu Keluarga
-      </a>
-    </div>
-  </div>
-
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Daftar Kartu Keluarga</h3>
+      <h3 class="card-title">Daftar Warga</h3>
     </div>
 
     <div class="card-body">
@@ -32,35 +22,31 @@
         <thead>
           <tr>
             <th>No</th>
+            <th>Nama</th>
+            <th>NIK</th>
             <th>Nomor KK</th>
-            <th>Nama Kepala Keluarga</th>
-            <th>Alamat</th>
-            <th>Telepon Rumah</th>
+            <th>Usia</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ( $kartuKeluarga as $kartu )
+          @foreach( $anggotaKeluarga as $klrg )
             <tr>
               <td>
                 {{ $loop -> iteration }}
               </td>
               <td>
-                <a href="{{ route('kartukeluarga.show', $kartu -> nomorkk) }}">
-                  {{ $kartu -> nomorkk }}
+                <a href="{{ route('anggotakeluarga.show', [ $klrg -> kartuKeluarga -> nomorkk, $klrg -> nomor_ktp ]) }}">
+                  {{ $klrg -> nama }}
                 </a>
               </td>
               <td>
-                @if(isset($kartu -> kepala_keluarga_id))
-                  {{ \App\AnggotaKeluarga::where('id', $kartu->kepala_keluarga_id)->first()->nama }}
-                @else
-                  ( Kosong )
-                @endif
+                {{ $klrg -> nomor_ktp }}
               </td>
               <td>
-                {{ $kartu -> alamat }}
+                {{ $klrg -> kartuKeluarga -> nomorkk }}
               </td>
               <td>
-                {{ $kartu -> telepon_rumah }}
+                {{ \Carbon\Carbon::parse( $klrg -> tanggal_bulan_tahun_lahir )->age }}
               </td>
             </tr>
           @endforeach
@@ -68,10 +54,10 @@
         <tfoot>
           <tr>
             <th>No</th>
+            <th>Nama</th>
+            <th>NIK</th>
             <th>Nomor KK</th>
-            <th>Nama Kepala Keluarga</th>
-            <th>Alamat</th>
-            <th>Telepon Rumah</th>
+            <th>Usia</th>
           </tr>
         </tfoot>
       </table>
