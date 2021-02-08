@@ -2,7 +2,7 @@
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           @foreach ($breadcrumbs as $breadcrumb)
             @if ($breadcrumb->url && !$loop->last)
             @else
@@ -10,7 +10,7 @@
             @endif
           @endforeach
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-8">
           <ol class="breadcrumb float-sm-right">
             @foreach ($breadcrumbs as $breadcrumb)
               @if ($breadcrumb->url && !$loop->last)

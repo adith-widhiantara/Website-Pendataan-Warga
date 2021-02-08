@@ -13,6 +13,32 @@
     $trail->push('Daftar Pengguna', route('user.index'));
   });
 
+  Breadcrumbs::for('kartukeluarga.index', function ($trail) {
+    $trail->parent('landing');
+    $trail->push('Daftar Kartu Keluarga', route('kartukeluarga.index'));
+  });
+
+  Breadcrumbs::for('kartukeluarga.create', function ($trail) {
+    $trail->parent('kartukeluarga.index');
+    $trail->push('Tambah Kartu Keluarga', route('kartukeluarga.create'));
+  });
+
+  Breadcrumbs::for('kartukeluarga.show', function ($trail, $kartuKeluarga) {
+    $trail->parent('kartukeluarga.index');
+    $trail->push($kartuKeluarga->nomorkk, route('kartukeluarga.show', $kartuKeluarga->nomorkk));
+  });
+
+  Breadcrumbs::for('anggotakeluarga.create', function ($trail, $kartuKeluarga) {
+    $trail->parent('kartukeluarga.show', $kartuKeluarga);
+    $trail->push('Tambah Anggota Keluarga', route('anggotakeluarga.create', $kartuKeluarga->nomorkk));
+  });
+
+  Breadcrumbs::for('anggotakeluarga.show', function ($trail, $anggotaKeluarga) {
+    $trail->parent('kartukeluarga.index');
+    $trail->push($anggotaKeluarga->kartuKeluarga->nomorkk, route('kartukeluarga.show', $anggotaKeluarga->kartuKeluarga->nomorkk));
+    $trail->push($anggotaKeluarga->nomor_ktp, route('anggotakeluarga.show', [ $anggotaKeluarga->kartuKeluarga->nomorkk, $anggotaKeluarga->nomor_ktp ]));
+  });
+
   Breadcrumbs::for('gelar.daftarKartuKeluarga', function ($trail) {
     $trail->parent('landing');
     $trail->push('Gelar', route('gelar.index'));

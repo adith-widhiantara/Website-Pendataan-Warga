@@ -46,10 +46,34 @@ Route::prefix('user')->middleware('auth')->group(function (){
 });
 // end User
 
+// landing
 Route::middleware('auth')->group(function () {
   Route::get('/', 'LandingController@landing')->name('landing');
 });
+// end landing
 
+// Data Kartu Keluarga
+Route::namespace('KartuKeluarga')->middleware('auth')->group(function () {
+  Route::resource('kartukeluarga', 'DataKartuKeluargaController')->except([
+    'show'
+  ]);
+
+  Route::prefix('kartukeluarga')->name('kartukeluarga.')->group(function () {
+    Route::get('{nomorkk}', 'DataKartuKeluargaController@show')->name('show');
+  });
+});
+// end Data Kartu Keluarga
+
+// Data Anggota Keluarga
+Route::prefix('kartukeluarga/{nomorkk}')->name('anggotakeluarga.')->middleware('auth')->group(function () {
+  Route::get('create', 'AnggotaKeluargaController@create')->name('create');
+  Route::post('store', 'AnggotaKeluargaController@store')->name('store');
+  Route::get('{nomor_ktp}', 'AnggotaKeluargaController@show')->name('show');
+  Route::patch('{nomor_ktp}', 'AnggotaKeluargaController@update')->name('update');
+});
+// end Data Anggota Keluarga
+
+// Daftar Kartu Keluarga
 Route::namespace('KartuKeluarga')->middleware('auth')->group(function () {
   Route::prefix('gelar')->name('gelar.')->group(function () {
     Route::get('', 'DaftarKartuKeluargaController@gelarIndex')->name('index');
@@ -99,3 +123,4 @@ Route::namespace('KartuKeluarga')->middleware('auth')->group(function () {
     Route::patch('{pekerjaan}/update', 'DaftarKartuKeluargaController@pekerjaanUpdate')->name('update');
   });
 });
+// end Daftar Kartu Keluarga

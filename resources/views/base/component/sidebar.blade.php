@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="#" class="brand-link">
+  <a href="{{ route('landing') }}" class="brand-link">
     <img src="{{ asset('lte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light">Data Warga Desa</span>
   </a>
@@ -25,7 +25,11 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          @if ( url()->current() == route('kartukeluarga.index') )
+            <a href="#" class="nav-link active">
+          @else
+            <a href="{{ route('kartukeluarga.index') }}" class="nav-link">
+          @endif
             <i class="fas fa-users nav-icon"></i>
             <p>
               Kartu Keluarga
