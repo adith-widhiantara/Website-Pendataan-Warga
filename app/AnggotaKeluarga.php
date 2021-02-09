@@ -43,4 +43,9 @@ class AnggotaKeluarga extends Model
   {
     return $this->belongsTo('App\KartuKeluarga');
   }
+
+  public function dataKelahiran()
+  {
+    return $this->hasOne('App\DataKelahiran');
+  }
 }

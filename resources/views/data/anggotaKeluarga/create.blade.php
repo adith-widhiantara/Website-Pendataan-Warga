@@ -30,7 +30,7 @@
             </div>
           @endforeach
         @endif
-        
+
         <div class="form-group">
           <label>
             Nama
@@ -52,9 +52,9 @@
 
         <div class="form-group">
           <label>
-            Nomor KTP
+            NIK
           </label>
-          <input type="text" required class="form-control" placeholder="Masukkan Nomor KTP" name="nomor_ktp" value="{{ old('nomor_ktp') }}">
+          <input type="text" required class="form-control" placeholder="Masukkan NIK" name="nomor_ktp" value="{{ old('nomor_ktp') }}">
         </div>
 
         <div class="form-group">
@@ -294,6 +294,7 @@
           </label>
           <input type="text" required class="form-control" placeholder="Masukkan Nama Ayah" name="nama_ayah" value="{{ old('nama_ayah') }}">
         </div>
+
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary float-right">

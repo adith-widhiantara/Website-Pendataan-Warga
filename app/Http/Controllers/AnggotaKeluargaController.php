@@ -17,7 +17,7 @@ class AnggotaKeluargaController extends Controller
      */
     public function index()
     {
-      $anggotaKeluarga = AnggotaKeluarga::all();
+      $anggotaKeluarga = AnggotaKeluarga::orderBy('id', 'desc')->get();
       return view('data.anggotaKeluarga.index', compact('anggotaKeluarga'));
     }
 
@@ -43,7 +43,7 @@ class AnggotaKeluargaController extends Controller
       $request -> validate([
         'nama' => ['required', 'string', 'max:255', 'unique:anggota_keluargas'],
         'gelars_id' => ['required'],
-        'nomor_ktp' => ['required', 'unique:anggota_keluargas'],
+        'nomor_ktp' => ['unique:anggota_keluargas'],
         'jenis_kelamin' => ['required'],
         'tempat_lahir' => ['required'],
         'tanggal_bulan_tahun_lahir' => ['required'],
@@ -140,10 +140,26 @@ class AnggotaKeluargaController extends Controller
      */
     public function update(Request $request, $nomorkk, $nomor_ktp)
     {
+      $anggotaKeluarga = AnggotaKeluarga::where('nomor_ktp', $nomor_ktp)->first();
+
+      if ( $request->nama == $anggotaKeluarga->nama ) {
+        $request -> validate([
+          'nama' => ['required', 'string', 'max:255'],
+        ]);
+      } else {
+        $request -> validate([
+          'nama' => ['required', 'string', 'max:255', 'unique:anggota_keluargas'],
+        ]);
+      }
+
+      if ( $request->nomor_ktp != $anggotaKeluarga->nomor_ktp ) {
+        $request -> validate([
+          'nomor_ktp' => ['unique:anggota_keluargas'],
+        ]);
+      }
+
       $request -> validate([
-        'nama' => ['required', 'string', 'max:255'],
         'gelars_id' => ['required'],
-        'nomor_ktp' => ['required'],
         'jenis_kelamin' => ['required'],
         'tempat_lahir' => ['required'],
         'tanggal_bulan_tahun_lahir' => ['required'],
@@ -163,7 +179,6 @@ class AnggotaKeluargaController extends Controller
       ]);
 
       $findKK = KartuKeluarga::where('nomorkk', $nomorkk)->first();
-      $anggotaKeluarga = AnggotaKeluarga::where('nomor_ktp', $nomor_ktp)->first();
 
       AnggotaKeluarga::where('nomor_ktp', $nomor_ktp)
                       ->update([

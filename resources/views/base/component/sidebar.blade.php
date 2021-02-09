@@ -52,7 +52,11 @@
 
         <li class="nav-header">Data Kependudukan</li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          @if ( url()->current() == route('datakelahiran.index') )
+            <a href="#" class="nav-link active">
+          @else
+            <a href="{{ route('datakelahiran.index') }}" class="nav-link">
+          @endif
             <i class="far fa-file-alt nav-icon"></i>
             <p>
               Data Kelahiran

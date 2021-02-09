@@ -13,6 +13,24 @@
     $trail->push('Daftar Pengguna', route('user.index'));
   });
 
+  // Data Kelahiran
+  Breadcrumbs::for('datakelahiran.index', function ($trail) {
+    $trail->parent('landing');
+    $trail->push('Daftar Data Kelahiran', route('datakelahiran.index'));
+  });
+
+  Breadcrumbs::for('datakelahiran.create', function ($trail, $dataKartuKeluarga) {
+    $trail->parent('datakelahiran.index');
+    $trail->push('Buat Data Kelahiran', route('datakelahiran.create', $dataKartuKeluarga->nomorkk));
+  });
+
+  Breadcrumbs::for('datakelahiran.show', function ($trail, $DataKelahiran) {
+    $trail->parent('datakelahiran.index');
+    $trail->push('Detail Data Kelahiran', route('datakelahiran.show', $DataKelahiran->id));
+  });
+  // end Data Kelahiran
+
+  // kartukeluarga
   Breadcrumbs::for('kartukeluarga.index', function ($trail) {
     $trail->parent('landing');
     $trail->push('Daftar Kartu Keluarga', route('kartukeluarga.index'));
@@ -27,7 +45,9 @@
     $trail->parent('kartukeluarga.index');
     $trail->push($kartuKeluarga->nomorkk, route('kartukeluarga.show', $kartuKeluarga->nomorkk));
   });
+  // end kartukeluarga
 
+  // anggotakeluarga
   Breadcrumbs::for('anggotakeluarga.create', function ($trail, $kartuKeluarga) {
     $trail->parent('kartukeluarga.show', $kartuKeluarga);
     $trail->push('Tambah Anggota Keluarga', route('anggotakeluarga.create', $kartuKeluarga->nomorkk));
@@ -43,7 +63,9 @@
     $trail->parent('landing');
     $trail->push('Daftar Warga', route('anggotakeluarga.index'));
   });
+  // end anggotakeluarga
 
+  // daftarKartuKeluarga
   Breadcrumbs::for('gelar.daftarKartuKeluarga', function ($trail) {
     $trail->parent('landing');
     $trail->push('Gelar', route('gelar.index'));
@@ -83,4 +105,5 @@
     $trail->parent('landing');
     $trail->push('Pekerjaan', route('pekerjaan.index'));
   });
+  // end daftarKartuKeluarga
 ?>

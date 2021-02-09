@@ -31,7 +31,7 @@
             </div>
           @endforeach
         @endif
-        
+
         <div class="form-group">
           <label>
             Nama
@@ -53,9 +53,9 @@
 
         <div class="form-group">
           <label>
-            Nomor KTP
+            NIK
           </label>
-          <input type="text" class="form-control" placeholder="Masukkan Nomor KTP" name="nomor_ktp" value="{{ $anggotaKeluarga -> nomor_ktp }}">
+          <input type="text" class="form-control" placeholder="Masukkan NIK" name="nomor_ktp" value="{{ $anggotaKeluarga -> nomor_ktp }}">
         </div>
 
         <div class="form-group">

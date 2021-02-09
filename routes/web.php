@@ -13,6 +13,51 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::namespace('Data')->middleware('auth')->group(function () {
+  // Data Kelahiran
+    Route::prefix('datakelahiran')->name('datakelahiran.')->group(function () {
+      Route::post('findnomorkk', 'KelahiranController@findNomorkk')->name('findNomorkk');
+    });
+
+    Route::resource('datakelahiran', 'KelahiranController')->parameters([
+      'datakelahiran' => 'DataKelahiran'
+    ])->except([
+      'create', 'store'
+    ]);
+
+    Route::prefix('datakelahiran')->name('datakelahiran.')->group(function () {
+      Route::get('{nomorkk}/create', 'KelahiranController@create')->name('create');
+      Route::post('{nomorkk}', 'KelahiranController@store')->name('store');
+    });
+  // end Data Kelahiran
+});
+
+// Data Kartu Keluarga
+Route::namespace('KartuKeluarga')->middleware('auth')->group(function () {
+  Route::resource('kartukeluarga', 'DataKartuKeluargaController')->except([
+    'show'
+  ]);
+
+  Route::prefix('kartukeluarga')->name('kartukeluarga.')->group(function () {
+    Route::get('{nomorkk}', 'DataKartuKeluargaController@show')->name('show');
+  });
+});
+// end Data Kartu Keluarga
+
+// Data Anggota Keluarga
+Route::middleware('auth')->name('anggotakeluarga.')->group(function () {
+  Route::prefix('kartukeluarga/{nomorkk}')->group(function () {
+    Route::get('create', 'AnggotaKeluargaController@create')->name('create');
+    Route::post('store', 'AnggotaKeluargaController@store')->name('store');
+    Route::get('{nomor_ktp}', 'AnggotaKeluargaController@show')->name('show');
+    Route::patch('{nomor_ktp}', 'AnggotaKeluargaController@update')->name('update');
+  });
+  Route::prefix('warga')->group(function () {
+    Route::get('', 'AnggotaKeluargaController@index')->name('index');
+  });
+});
+// end Data Anggota Keluarga
+
 // Auth
 Route::namespace('Auth')->middleware('guest')->group(function () {
   Route::get('login', 'LoginController@login')->name('login');
@@ -51,32 +96,6 @@ Route::middleware('auth')->group(function () {
   Route::get('/', 'LandingController@landing')->name('landing');
 });
 // end landing
-
-// Data Kartu Keluarga
-Route::namespace('KartuKeluarga')->middleware('auth')->group(function () {
-  Route::resource('kartukeluarga', 'DataKartuKeluargaController')->except([
-    'show'
-  ]);
-
-  Route::prefix('kartukeluarga')->name('kartukeluarga.')->group(function () {
-    Route::get('{nomorkk}', 'DataKartuKeluargaController@show')->name('show');
-  });
-});
-// end Data Kartu Keluarga
-
-// Data Anggota Keluarga
-Route::middleware('auth')->name('anggotakeluarga.')->group(function () {
-  Route::prefix('kartukeluarga/{nomorkk}')->group(function () {
-    Route::get('create', 'AnggotaKeluargaController@create')->name('create');
-    Route::post('store', 'AnggotaKeluargaController@store')->name('store');
-    Route::get('{nomor_ktp}', 'AnggotaKeluargaController@show')->name('show');
-    Route::patch('{nomor_ktp}', 'AnggotaKeluargaController@update')->name('update');
-  });
-  Route::prefix('warga')->group(function () {
-    Route::get('', 'AnggotaKeluargaController@index')->name('index');
-  });
-});
-// end Data Anggota Keluarga
 
 // Daftar Kartu Keluarga
 Route::namespace('KartuKeluarga')->middleware('auth')->group(function () {
