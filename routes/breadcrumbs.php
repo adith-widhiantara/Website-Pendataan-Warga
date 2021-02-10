@@ -30,6 +30,23 @@
   });
   // end Data Kelahiran
 
+  // Data Kematian
+  Breadcrumbs::for('datakematian.index', function ($trail) {
+    $trail->parent('landing');
+    $trail->push('Daftar Data Kematian', route('datakematian.index'));
+  });
+
+  Breadcrumbs::for('datakematian.create', function ($trail, $dataKartuKeluarga) {
+    $trail->parent('datakematian.index');
+    $trail->push('Buat Data Kematian', route('datakematian.create', $dataKartuKeluarga->nomorkk));
+  });
+
+  Breadcrumbs::for('datakematian.show', function ($trail, $DataKematian) {
+    $trail->parent('datakematian.index');
+    $trail->push('Detail Data Kematian', route('datakematian.show', $DataKematian->id));
+  });
+  // end Data Kematian
+
   // kartukeluarga
   Breadcrumbs::for('kartukeluarga.index', function ($trail) {
     $trail->parent('landing');

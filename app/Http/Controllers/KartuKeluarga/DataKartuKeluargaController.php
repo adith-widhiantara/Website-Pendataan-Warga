@@ -75,7 +75,11 @@ class DataKartuKeluargaController extends Controller
     {
       $kartuKeluarga = KartuKeluarga::where('nomorkk', $nomorkk)
                                     ->first();
-      return view('data.kartuKeluarga.show', compact('kartuKeluarga'));
+      $anggotaKeluarga = $kartuKeluarga->anggotaKeluarga()
+        ->where('status', 1)
+        ->get();
+
+      return view('data.kartuKeluarga.show', compact('kartuKeluarga', 'anggotaKeluarga'));
     }
 
     /**

@@ -24,6 +24,13 @@
       @csrf
       @method('patch')
       <div class="card-body">
+
+        @if ( $anggotaKeluarga -> status == 2 )
+          <div class="alert alert-danger" role="alert">
+            Anggota keluarga ini sudah meninggal
+          </div>
+        @endif
+
         @if ($errors->any())
           @foreach ($errors->all() as $error)
             <div class="alert alert-warning" role="alert">

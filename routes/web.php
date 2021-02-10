@@ -30,6 +30,23 @@ Route::namespace('Data')->middleware('auth')->group(function () {
       Route::post('{nomorkk}', 'KelahiranController@store')->name('store');
     });
   // end Data Kelahiran
+
+  // Data Kematian
+    Route::prefix('datakematian')->name('datakematian.')->group(function () {
+      Route::post('findnomorkk', 'KematianController@findNomorkk')->name('findNomorkk');
+    });
+
+    Route::resource('datakematian', 'KematianController')->parameters([
+      'datakematian' => 'DataKematian'
+    ])->except([
+      'create', 'store'
+    ]);
+
+    Route::prefix('datakematian')->name('datakematian.')->group(function () {
+      Route::get('{nomorkk}/create', 'KematianController@create')->name('create');
+      Route::post('{nomorkk}', 'KematianController@store')->name('store');
+    });
+  // end Data Kematian
 });
 
 // Data Kartu Keluarga

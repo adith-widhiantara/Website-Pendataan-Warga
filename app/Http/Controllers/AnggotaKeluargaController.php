@@ -17,7 +17,9 @@ class AnggotaKeluargaController extends Controller
      */
     public function index()
     {
-      $anggotaKeluarga = AnggotaKeluarga::orderBy('id', 'desc')->get();
+      $anggotaKeluarga = AnggotaKeluarga::orderBy('id', 'desc')
+        ->where('status', 1)
+        ->get();
       return view('data.anggotaKeluarga.index', compact('anggotaKeluarga'));
     }
 

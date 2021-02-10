@@ -37,6 +37,7 @@ class AnggotaKeluarga extends Model
     'nik_ayah',
     'nama_ayah',
     'users_id',
+    'status',
   ];
 
   public function kartuKeluarga()
@@ -47,5 +48,10 @@ class AnggotaKeluarga extends Model
   public function dataKelahiran()
   {
     return $this->hasOne('App\DataKelahiran');
+  }
+
+  public function dataKematian()
+  {
+    return $this->hasOne('App\DataKematian');
   }
 }

@@ -116,7 +116,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach( $kartuKeluarga -> anggotaKeluarga as $anggota )
+          @foreach( $anggotaKeluarga as $anggota )
             <tr>
               <td>{{ $loop -> iteration }}</td>
               <td>

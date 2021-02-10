@@ -64,7 +64,11 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          @if ( url()->current() == route('datakematian.index') )
+            <a href="#" class="nav-link active">
+          @else
+            <a href="{{ route('datakematian.index') }}" class="nav-link">
+          @endif
             <i class="far fa-file-alt nav-icon"></i>
             <p>
               Data Kematian
