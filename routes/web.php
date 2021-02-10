@@ -102,6 +102,7 @@ Route::middleware('auth')->name('anggotakeluarga.')->group(function () {
     Route::get('{nomor_ktp}', 'AnggotaKeluargaController@show')->name('show');
     Route::patch('{nomor_ktp}', 'AnggotaKeluargaController@update')->name('update');
   });
+  
   Route::prefix('warga')->group(function () {
     Route::get('', 'AnggotaKeluargaController@index')->name('index');
   });
