@@ -47,6 +47,23 @@
   });
   // end Data Kematian
 
+  // Data Pindah Datang
+  Breadcrumbs::for('datapindahdatang.index', function ($trail) {
+    $trail->parent('landing');
+    $trail->push('Daftar Data Pindah Datang', route('datapindahdatang.index'));
+  });
+
+  Breadcrumbs::for('datapindahdatang.create', function ($trail, $dataKartuKeluarga) {
+    $trail->parent('datapindahdatang.index');
+    $trail->push('Buat Data Pindah Datang', route('datapindahdatang.create', $dataKartuKeluarga->nomorkk));
+  });
+
+  Breadcrumbs::for('datapindahdatang.show', function ($trail, $DataPindahDatang) {
+    $trail->parent('datapindahdatang.index');
+    $trail->push('Detail Data Pindah Datang', route('datapindahdatang.show', $DataPindahDatang->id));
+  });
+  // end Data Pindah Datang
+
   // kartukeluarga
   Breadcrumbs::for('kartukeluarga.index', function ($trail) {
     $trail->parent('landing');
