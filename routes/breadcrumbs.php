@@ -64,6 +64,23 @@
   });
   // end Data Pindah Datang
 
+  // Data Pindah Keluar
+  Breadcrumbs::for('datapindahkeluar.index', function ($trail) {
+    $trail->parent('landing');
+    $trail->push('Daftar Data Pindah Keluar', route('datapindahkeluar.index'));
+  });
+
+  Breadcrumbs::for('datapindahkeluar.create', function ($trail, $dataKartuKeluarga) {
+    $trail->parent('datapindahkeluar.index');
+    $trail->push('Buat Data Pindah Keluar', route('datapindahkeluar.create', $dataKartuKeluarga->nomorkk));
+  });
+
+  Breadcrumbs::for('datapindahkeluar.show', function ($trail, $DataPindahKeluar) {
+    $trail->parent('datapindahkeluar.index');
+    $trail->push('Detail Data Pindah Keluar', route('datapindahkeluar.show', $DataPindahKeluar->id));
+  });
+  // end Data Pindah Keluar
+
   // kartukeluarga
   Breadcrumbs::for('kartukeluarga.index', function ($trail) {
     $trail->parent('landing');

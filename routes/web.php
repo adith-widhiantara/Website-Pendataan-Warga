@@ -64,6 +64,22 @@ Route::namespace('Data')->middleware('auth')->group(function () {
       Route::post('{nomorkk}', 'PindahDatangController@store')->name('store');
     });
   // end Data Pindah Datang
+
+  // Data Pindah Keluar
+    Route::prefix('datapindahkeluar')->name('datapindahkeluar.')->group(function () {
+      Route::post('findnomorkk', 'PindahKeluarController@findNomorkk')->name('findNomorkk');
+    });
+
+    Route::resource('datapindahkeluar', 'PindahKeluarController')->except([
+      'create'
+    ])->parameters([
+      'datapindahkeluar' => 'DataPindahKeluar'
+    ]);
+
+    Route::prefix('datapindahkeluar')->name('datapindahkeluar.')->group(function () {
+      Route::get('{nomorkk}/create', 'PindahKeluarController@create')->name('create');
+    });
+  // end Data Pindah Keluar
 });
 
 // Data Kartu Keluarga

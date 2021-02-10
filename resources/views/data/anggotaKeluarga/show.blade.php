@@ -27,7 +27,11 @@
 
         @if ( $anggotaKeluarga -> status == 2 )
           <div class="alert alert-danger" role="alert">
-            Anggota keluarga ini sudah meninggal
+            Anggota keluarga ini sudah meninggal!
+          </div>
+        @elseif ( $anggotaKeluarga -> status == 3 )
+          <div class="alert alert-danger" role="alert">
+            Anggota keluarga ini sudah pindah keluar!
           </div>
         @endif
 

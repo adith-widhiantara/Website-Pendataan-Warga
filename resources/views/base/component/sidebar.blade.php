@@ -88,7 +88,11 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          @if ( url()->current() == route('datapindahkeluar.index') )
+            <a href="#" class="nav-link active">
+          @else
+            <a href="{{ route('datapindahkeluar.index') }}" class="nav-link">
+          @endif
             <i class="far fa-file-alt nav-icon"></i>
             <p>
               Data Pindah Keluar

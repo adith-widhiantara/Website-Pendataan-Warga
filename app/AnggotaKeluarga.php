@@ -59,4 +59,9 @@ class AnggotaKeluarga extends Model
   {
     return $this->hasOne('App\DataPindahDatang');
   }
+
+  public function dataPindahKeluar()
+  {
+    return $this->hasOne('App\DataPindahKeluar');
+  }
 }

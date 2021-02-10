@@ -1,6 +1,6 @@
 @extends('base.base')
 
-@section('title', 'Data Kematian')
+@section('title', 'Data Pindah Keluar')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -12,20 +12,20 @@
   <link rel="stylesheet" href="{{ asset('lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 @endsection
 
-@section('breadcrumb', Breadcrumbs::render('datakematian.index'))
+@section('breadcrumb', Breadcrumbs::render('datapindahkeluar.index'))
 
 @section('base')
   <div class="card card-primary">
     <div class="card-header">
       <h3 class="card-title">
-        Daftar Data Kematian
+        Daftar Data Pindah Keluar
       </h3>
     </div>
     <div class="card-body">
       <div class="row">
         <div class="col-12">
           <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modal-default">
-            Buat Data Kematian
+            Buat Data Pindah Keluar
           </a>
 
           <div class="modal fade" id="modal-default">
@@ -37,7 +37,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <form action="{{ route('datakematian.findNomorkk') }}" method="post">
+                <form action="{{ route('datapindahkeluar.findNomorkk') }}" method="post">
                   @csrf
                   <div class="modal-body">
                     <div class="form-group">
@@ -67,14 +67,13 @@
             <th>No</th>
             <th>Tanggal Melapor</th>
             <th>Nama</th>
-            <th>Usia</th>
-            <th>Tanggal Meninggal</th>
-            <th>Tempat Meninggal</th>
+            <th>Tanggal Surat</th>
+            <th>Nomor Surat</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          @foreach ( $dataKematian as $data )
+          @foreach ($dataPindahKeluar as $data)
             <tr>
               <td>{{ $loop -> iteration }}</td>
               <td>{{ \Carbon\Carbon::parse($data -> tanggal_melapor)->isoFormat('Do MMMM YYYY') }}</td>
@@ -83,11 +82,10 @@
                   {{ $data -> anggotaKeluarga -> nama }}
                 </a>
               </td>
-              <td>{{ \Carbon\Carbon::parse($data -> anggotaKeluarga -> tanggal_bulan_tahun_lahir)->age }}</td>
-              <td>{{ \Carbon\Carbon::parse($data -> tanggal_meninggal)->isoFormat('Do MMMM YYYY') }}</td>
-              <td>{{ $data -> tempat_meninggal }}</td>
+              <td>{{ \Carbon\Carbon::parse($data -> tanggal_surat)->isoFormat('Do MMMM YYYY') }}</td>
+              <td>{{ $data -> nomor_surat }}</td>
               <td>
-                <a href="{{ route('datakematian.show', $data->id) }}" class="btn btn-primary">
+                <a class="btn btn-primary" href="{{ route('datapindahkeluar.show', $data->id) }}">
                   Detail
                 </a>
               </td>
@@ -99,9 +97,8 @@
             <th>No</th>
             <th>Tanggal Melapor</th>
             <th>Nama</th>
-            <th>Usia</th>
-            <th>Tanggal Meninggal</th>
-            <th>Tempat Meninggal</th>
+            <th>Tanggal Surat</th>
+            <th>Nomor Surat</th>
             <th></th>
           </tr>
         </tfoot>
