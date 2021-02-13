@@ -15,7 +15,8 @@ class CreateKartuKeluargasTable extends Migration
     {
         Schema::create('kartu_keluargas', function (Blueprint $table) {
             $table->id();
-            $table->integer('kepala_keluarga_id');
+            $table->string('nomorkk')->unique();
+            $table->integer('kepala_keluarga_id')->nullable();
             $table->string('alamat')->nullable();
             $table->string('kode_pos')->nullable();
             $table->string('rt')->nullable();

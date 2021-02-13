@@ -19,6 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('nip')->unique();
             $table->timestamp('nip_verified_at')->nullable();
             $table->string('password');
+            $table->string('photo')->nullable();
+            $table->integer('role')->default(1);
+            $table->integer('resetpassword')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -15,11 +15,11 @@ class CreateDataKelahiransTable extends Migration
     {
         Schema::create('data_kelahirans', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('tanggal_melapor');
+            $table->date('tanggal_melapor');
             $table->integer('nama_pelapor_id');
-            $table->unsignedBigInteger('anggota_keluargas_id');
+            $table->unsignedBigInteger('anggota_keluarga_id');
             $table->string('nomor_anak');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }
