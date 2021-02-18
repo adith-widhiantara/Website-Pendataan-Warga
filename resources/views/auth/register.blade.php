@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="input-group mb-3">
-        <input type="password" class="form-control" placeholder="Password" name="password" required value="qweqweqwe">
+        <input type="password" class="form-control" placeholder="Password" name="password" required>
         <div class="input-group-append">
           <div class="input-group-text">
             <span class="fas fa-lock"></span>
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="input-group mb-3">
-        <input type="password" class="form-control" placeholder="Ulangi password" name="password_confirmation" required value="qweqweqwe">
+        <input type="password" class="form-control" placeholder="Ulangi password" name="password_confirmation" required>
         <div class="input-group-append">
           <div class="input-group-text">
             <span class="fas fa-lock"></span>

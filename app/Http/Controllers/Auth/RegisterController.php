@@ -38,8 +38,6 @@ class RegisterController extends Controller
       'password' => Hash::make($request -> password),
     ]);
 
-    if (Auth::attempt(['nip' => $request->nip, 'password' => $request -> password])) {
-      return redirect()->route('landing');
-    }
+    return redirect()->route('login')->with('status', 'Tunggu akun anda dikonfirmasi!');
   }
 }

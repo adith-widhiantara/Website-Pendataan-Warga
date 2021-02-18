@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="input-group mb-3">
-        <input type="password" class="form-control" placeholder="Password" value="qweqweqwe" name="password" required>
+        <input type="password" class="form-control" placeholder="Password" name="password" required>
         <div class="input-group-append">
           <div class="input-group-text">
             <span class="fas fa-lock"></span>
