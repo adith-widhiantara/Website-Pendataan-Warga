@@ -1,0 +1,11 @@
+\DB::table('anggota_keluargas')->whereBetween(\DB::raw("DATE_PART('year', CURRENT_DATE::date) - DATE_PART('year', anggota_keluargas.tanggal_bulan_tahun_lahir::date)"), array( 1 , 10 ))->count()
+
+000webhost
+pendataanwargakevin
+
+Gjc%Fi^tDGXSE7DWSMlk
+
+DB:
+kevinproject_name
+kevinproject_username
+[+hR\6NF%([dAeV%
